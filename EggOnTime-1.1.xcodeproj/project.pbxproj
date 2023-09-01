@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */; };
-		046CE0CC2AA204C700F8ED87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0CB2AA204C700F8ED87 /* ContentView.swift */; };
+		046CE0CC2AA204C700F8ED87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0CB2AA204C700F8ED87 /* MainView.swift */; };
 		046CE0CE2AA204C900F8ED87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0CD2AA204C900F8ED87 /* Assets.xcassets */; };
 		046CE0D12AA204C900F8ED87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */; };
+		046CE0DD2AA2069800F8ED87 /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		046CE0C62AA204C700F8ED87 /* EggOnTime-1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EggOnTime-1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggOnTime_1_1App.swift; sourceTree = "<group>"; };
-		046CE0CB2AA204C700F8ED87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		046CE0CB2AA204C700F8ED87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		046CE0CD2AA204C900F8ED87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +53,12 @@
 		046CE0C82AA204C700F8ED87 /* EggOnTime-1.1 */ = {
 			isa = PBXGroup;
 			children = (
-				046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */,
-				046CE0CB2AA204C700F8ED87 /* ContentView.swift */,
 				046CE0CD2AA204C900F8ED87 /* Assets.xcassets */,
 				046CE0CF2AA204C900F8ED87 /* Preview Content */,
+				046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */,
+				046CE0D72AA2053100F8ED87 /* Views */,
+				046CE0D82AA2053E00F8ED87 /* ViewModels */,
+				046CE0D92AA2055300F8ED87 /* Models */,
 			);
 			path = "EggOnTime-1.1";
 			sourceTree = "<group>";
@@ -65,6 +69,45 @@
 				046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		046CE0D72AA2053100F8ED87 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				046CE0DA2AA2057300F8ED87 /* Main */,
+				046CE0DB2AA2057B00F8ED87 /* CookingView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		046CE0D82AA2053E00F8ED87 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		046CE0D92AA2055300F8ED87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		046CE0DA2AA2057300F8ED87 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				046CE0CB2AA204C700F8ED87 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		046CE0DB2AA2057B00F8ED87 /* CookingView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CookingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +180,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				046CE0CC2AA204C700F8ED87 /* ContentView.swift in Sources */,
+				046CE0CC2AA204C700F8ED87 /* MainView.swift in Sources */,
 				046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */,
+				046CE0DD2AA2069800F8ED87 /* StopwatchViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

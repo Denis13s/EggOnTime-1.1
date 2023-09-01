@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct EggOnTime_1_1App: App {
+    
+    /// ensuring that the UserDefault timeStartedStored is cleared every time app is Relaunched
+    init() {
+        UserDefaults.standard.set(nil, forKey: "timeStartedStored")
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .environmentObject(Stopwatch())
         }
     }
 }

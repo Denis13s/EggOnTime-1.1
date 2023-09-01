@@ -15,7 +15,8 @@ final class Stopwatch: ObservableObject {
     @Published private(set) var isFinished = false
     
     @Published private(set) var timePassed: TimeInterval = 0.0
-    @Published private(set) var timeLeft: TimeInterval
+    @Published private(set) var timeLeft: TimeInterval { didSet { updatetimeLeftFormatted() } }
+    @Published private(set) var timeLeftFormatted: (min: String, sec: String) = ("6", "30")
     
     @Published private(set) var progress = 0.0
     
@@ -101,6 +102,15 @@ private extension Stopwatch {
     func timerDeinit() {
         timer?.cancel()
         timer = nil
+    }
+    
+    func updatetimeLeftFormatted() {
+        let min = Int(timeLeft) / 60
+        let sec = Int(timeLeft) % 60
+        let secString: String
+        if sec < 10 { secString = "0\(sec)" }
+        else { secString = String(sec) }
+        timeLeftFormatted = (min: String(min), sec: String(secString))
     }
     
     func updateProperties(elapsed: TimeInterval) {

@@ -12,6 +12,16 @@
 		046CE0CE2AA204C900F8ED87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0CD2AA204C900F8ED87 /* Assets.xcassets */; };
 		046CE0D12AA204C900F8ED87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */; };
 		046CE0DD2AA2069800F8ED87 /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */; };
+		04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */; };
+		04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93E2AA23C340054AA57 /* EggParameters.swift */; };
+		04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9402AA240D60054AA57 /* CookingView.swift */; };
+		04F5F9442AA246D40054AA57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9432AA246D40054AA57 /* Constants.swift */; };
+		04F5F9462AA2470B0054AA57 /* SelectingParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9452AA2470B0054AA57 /* SelectingParameterView.swift */; };
+		04F5F9482AA248E10054AA57 /* EggMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9472AA248E10054AA57 /* EggMainView.swift */; };
+		04F5F94C2AA24E460054AA57 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F94B2AA24E460054AA57 /* DividerView.swift */; };
+		04F5F94E2AA24EF30054AA57 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F94D2AA24EF30054AA57 /* CircleButtonView.swift */; };
+		04F5F9502AA24F290054AA57 /* CircleBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F94F2AA24F290054AA57 /* CircleBGView.swift */; };
+		04F5F9522AA24FCE0054AA57 /* EggCookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9512AA24FCD0054AA57 /* EggCookingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +31,16 @@
 		046CE0CD2AA204C900F8ED87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
+		04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewModel.swift; sourceTree = "<group>"; };
+		04F5F93E2AA23C340054AA57 /* EggParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggParameters.swift; sourceTree = "<group>"; };
+		04F5F9402AA240D60054AA57 /* CookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingView.swift; sourceTree = "<group>"; };
+		04F5F9432AA246D40054AA57 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		04F5F9452AA2470B0054AA57 /* SelectingParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingParameterView.swift; sourceTree = "<group>"; };
+		04F5F9472AA248E10054AA57 /* EggMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggMainView.swift; sourceTree = "<group>"; };
+		04F5F94B2AA24E460054AA57 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		04F5F94D2AA24EF30054AA57 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
+		04F5F94F2AA24F290054AA57 /* CircleBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBGView.swift; sourceTree = "<group>"; };
+		04F5F9512AA24FCD0054AA57 /* EggCookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggCookingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +79,7 @@
 				046CE0D72AA2053100F8ED87 /* Views */,
 				046CE0D82AA2053E00F8ED87 /* ViewModels */,
 				046CE0D92AA2055300F8ED87 /* Models */,
+				04F5F9422AA246900054AA57 /* Constants */,
 			);
 			path = "EggOnTime-1.1";
 			sourceTree = "<group>";
@@ -76,6 +97,7 @@
 			children = (
 				046CE0DA2AA2057300F8ED87 /* Main */,
 				046CE0DB2AA2057B00F8ED87 /* CookingView */,
+				04F5F94B2AA24E460054AA57 /* DividerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -83,6 +105,7 @@
 		046CE0D82AA2053E00F8ED87 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */,
 				046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */,
 			);
 			path = ViewModels;
@@ -91,6 +114,7 @@
 		046CE0D92AA2055300F8ED87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04F5F93E2AA23C340054AA57 /* EggParameters.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				046CE0CB2AA204C700F8ED87 /* MainView.swift */,
+				04F5F9472AA248E10054AA57 /* EggMainView.swift */,
+				04F5F9452AA2470B0054AA57 /* SelectingParameterView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -106,8 +132,20 @@
 		046CE0DB2AA2057B00F8ED87 /* CookingView */ = {
 			isa = PBXGroup;
 			children = (
+				04F5F9402AA240D60054AA57 /* CookingView.swift */,
+				04F5F9512AA24FCD0054AA57 /* EggCookingView.swift */,
+				04F5F94F2AA24F290054AA57 /* CircleBGView.swift */,
+				04F5F94D2AA24EF30054AA57 /* CircleButtonView.swift */,
 			);
 			path = CookingView;
+			sourceTree = "<group>";
+		};
+		04F5F9422AA246900054AA57 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				04F5F9432AA246D40054AA57 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,8 +219,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				046CE0CC2AA204C700F8ED87 /* MainView.swift in Sources */,
+				04F5F9462AA2470B0054AA57 /* SelectingParameterView.swift in Sources */,
+				04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */,
 				046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */,
+				04F5F94C2AA24E460054AA57 /* DividerView.swift in Sources */,
 				046CE0DD2AA2069800F8ED87 /* StopwatchViewModel.swift in Sources */,
+				04F5F9442AA246D40054AA57 /* Constants.swift in Sources */,
+				04F5F9502AA24F290054AA57 /* CircleBGView.swift in Sources */,
+				04F5F94E2AA24EF30054AA57 /* CircleButtonView.swift in Sources */,
+				04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */,
+				04F5F9522AA24FCE0054AA57 /* EggCookingView.swift in Sources */,
+				04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */,
+				04F5F9482AA248E10054AA57 /* EggMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

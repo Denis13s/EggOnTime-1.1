@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 final class CookingViewModel: ObservableObject {
     @Published var eggSize = EggSize.m { didSet { calculateTime() } }
@@ -15,8 +16,49 @@ final class CookingViewModel: ObservableObject {
     @Published private(set) var timeCooking: (all: Double, soft: Double, medium: Double, hard: Double) = (390.0, 270.0, 390.0, 630.0) { didSet { updateTimeFormatted() } }
     @Published private(set) var timeFormatted: (min: String, sec: String) = ("6", "30")
     
+    @Published private(set) var notificationPermissionStatus = false
+    
+    let timeAlert: TimeInterval = 20.0
 }
 
+// MARK: - Notifications
+extension CookingViewModel {
+    func requestNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: .alert) { granted, error in
+            DispatchQueue.main.async {
+                if granted {
+                    self.notificationPermissionStatus = true
+                } else {
+                    self.notificationPermissionStatus = false
+                }
+            }
+        }
+    }
+    
+    func scheduleNotification(type: NotificationType) {
+        let content = UNMutableNotificationContent()
+        content.sound = nil
+        
+        switch type {
+        case .started:
+            content.title = "Boiling initiated"
+            content.body = "Egg ready in \(timeFormatted.min):\(timeFormatted.sec)"
+        case .almostReady:
+            content.title = "Almost ready"
+            content.body = "Egg done in \(Int(timeAlert)) seconds"
+        case .ready:
+            content.title = "Done"
+            content.body = "Egg is ready to eat. Enjoy your meal!"
+        }
+        
+        let trigger: UNTimeIntervalNotificationTrigger? = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "Notification", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
+}
+
+// MARK: - Calculating time
 private extension CookingViewModel {
     func updateTimeFormatted() {
         let min = Int(timeCooking.all) / 60
@@ -57,3 +99,4 @@ private extension CookingViewModel {
         )
     }
 }
+

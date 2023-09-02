@@ -20,26 +20,34 @@ final class Stopwatch: ObservableObject {
     
     @Published private(set) var progress = 0.0
     
+    @Published private(set) var shouldAlert = false
+    
     /// write the initial moment of starting timer if it was started in JSON
     @AppStorage("timeStartedStored") private var timeStartedStored: Data?
     private var timeStarted: Date? { didSet { updateTimeStartedStored() } }
     
     /// desired time for the timer
-    private let timeTimer: TimeInterval
+    //private let timeTimer: TimeInterval
+    var timeTimer: TimeInterval
+    private let timeAlert: TimeInterval
     private var timer: AnyCancellable?
     
     /// calculating idling time since the last pause
     private var timeIdle: TimeInterval = 0.0
     private var momentLastTimePaused: Date?
     
-    init(timeTimer: TimeInterval = 20) {
+    init(timeTimer: TimeInterval = 60, timeAlert: TimeInterval) {
         /// set timerTimer and timerLeft to initialized value, but if not specified, will be 320.0
         self.timeTimer = timeTimer
         timeLeft = self.timeTimer
+        self.timeAlert = timeAlert
         
         /// timeStarted fetching data from the timeStartedStored, and if there is a nil - nothing will happen, but if not, stopwatch with start() from the established timeStarted before
         timeStarted = fetchTimeStarted()
         if timeStarted != nil { start() }
+        
+        /// ensuring that the formatted time is already updated by the time it's called
+        updatetimeLeftFormatted()
     }
 }
 
@@ -59,7 +67,8 @@ extension Stopwatch {
         }
         /// rund a timer with 0.1 second interval
         timer = Timer
-            .publish(every: 0.1, on: .main, in: .common)
+        /// previously time interval was 0.1, but I tried to make 1.0. Maybe could increase performance .publish(every: 0.1, on: .main, in: .common)
+            .publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 guard let self = self, let timeStarted = self.timeStarted else { return }
@@ -68,10 +77,24 @@ extension Stopwatch {
                     let now = Date()
                     /// calculate, how much time passes since start was calles subtracting all idle time
                     let elapsed = now.timeIntervalSince(timeStarted) - timeIdle
-                    /// every period of time (0.1) updateProperties will be called and update the properties
-                    updateProperties(elapsed: elapsed)
+                    
+                    // MARK: - !!! Temporary timer speeding up. Should be removed
+                    let elapsedSpeededUP = elapsed * 10
+                    updateProperties(elapsed: elapsedSpeededUP)
+                    
+                    /* MARK: Original code
+                     /// every period of time (0.1) updateProperties will be called and update the properties
+                     updateProperties(elapsed: elapsed)
+                     */
                 } else {
+                    /// making sure, that is timer is finished, all the values get default values. this prevents from getting negative time
                     timerDeinit()
+                    wasLaunched = true
+                    isRunning = false
+                    isFinished = true
+                    timeLeft = 0.0
+                    progress = 1.0
+                    shouldAlert = false
                 }
             }
         momentLastTimePaused = nil
@@ -91,6 +114,7 @@ extension Stopwatch {
         timePassed = 0.0
         timeLeft = timeTimer
         progress = 0.0
+        shouldAlert = false
         timeStarted = nil
         timeIdle = 0.0
         momentLastTimePaused = nil
@@ -105,6 +129,11 @@ private extension Stopwatch {
     }
     
     func updatetimeLeftFormatted() {
+        /// ensuring that timeLeftFormatted will newer show begative values
+        guard timeLeft >= 0 else {
+            timeLeftFormatted = (min: "0", sec: "00")
+            return
+        }
         let min = Int(timeLeft) / 60
         let sec = Int(timeLeft) % 60
         let secString: String
@@ -118,6 +147,7 @@ private extension Stopwatch {
         timeLeft = timeTimer - timePassed
         progress = timePassed / timeTimer
         if timePassed >= timeTimer { isFinished = true }
+        if timeLeft <= timeAlert { shouldAlert = true }
     }
     
     /// encode current moment of timeStarted to timeStartedStored if it exists

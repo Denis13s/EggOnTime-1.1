@@ -39,7 +39,6 @@ struct CookingView: View {
                     }
                     .ignoresSafeArea()
                     
-                    
                     VStack(spacing: 0) {
                         // MARK: - Top button
                         HStack {
@@ -56,10 +55,10 @@ struct CookingView: View {
                             }
                         }
                         .foregroundColor(MyColor.four.opacity(0.5))
-                        .padding()
+                        .padding([.vertical, .horizontal], 20)
                         
                         // MARK: - Egg Condition
-                        VStack {
+                        VStack(spacing: 0) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .foregroundColor(MyColor.four)
@@ -70,23 +69,22 @@ struct CookingView: View {
                                     .foregroundColor(MyColor.three)
                                     .fontWeight(.light)
                             }
+                            .padding(.bottom, 10)
+                            
                             Text("Current Condition")
                                 .font(.caption)
                                 .fontWeight(.light)
                                 .foregroundColor(MyColor.four)
                         }
-                        .padding(.vertical, 35)
+                        .padding(.horizontal, 35)
                         
                         EggCookingView()
-                            .padding(35)
                             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
+                            .padding([.vertical, .horizontal], 35)
                     }
                 }
                 
-                
-                
                 Group {
-                    
                     // MARK: - Time left
                     VStack(spacing: 0) {
                         Text(stopwatch.timeLeftFormatted.min + ":" + stopwatch.timeLeftFormatted.sec)
@@ -97,7 +95,7 @@ struct CookingView: View {
                             .fontWeight(.light)
                     }
                     .foregroundColor(MyColor.four)
-                    .padding(.top, 35)
+                    .padding(.top, 20)
                     
                     // MARK: - Divider
                     DividerView()
@@ -162,29 +160,29 @@ struct CookingView: View {
                         
                         
                     }
-                    .padding(.vertical, 35)
+                    .padding(.top, 35)
                 }
                 .padding(.horizontal, 35)
             }
-            
-            
+            .padding(.bottom, 20)
         }
         // Start timer and schedule notification once the View appeared
         .onAppear {
             stopwatch.start()
-//            model.scheduleNotification(type: .started)
+            if !model.notificationPermissionStatus { model.requestNotificationPermission() }
+            model.scheduleNotification(type: .started)
         }
-//        .onChange(of: timer.shouldHurryUp) { newValue in
-//            if newValue {
-//                AudioServicesPlaySystemSound(1060)
+        .onChange(of: stopwatch.shouldAlert) { newValue in
+            if newValue {
+                AudioServicesPlaySystemSound(1060)
 //                feedbackGenerator.impactOccurred()
-//                model.scheduleNotification(type: .almostReady)
-//            }
-//        }
+                model.scheduleNotification(type: .almostReady)
+            }
+        }
         .onChange(of: stopwatch.isFinished) { newValue in
             if newValue {
                 AudioServicesPlaySystemSound(1026)
-//                model.scheduleNotification(type: .ready)
+                model.scheduleNotification(type: .ready)
                 
                 // Animation for the buttons fading
                 withAnimation {
@@ -218,6 +216,6 @@ struct CookingView_Previews: PreviewProvider {
     static var previews: some View {
         CookingView(isCookingViewPresented: Binding.constant(true))
             .environmentObject(CookingViewModel())
-            .environmentObject(Stopwatch())
+            .environmentObject(Stopwatch(timeAlert: 20))
     }
 }

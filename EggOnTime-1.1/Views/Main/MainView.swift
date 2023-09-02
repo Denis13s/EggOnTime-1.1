@@ -8,6 +8,7 @@
 /*
  MARK: Features
  - EggOnTime_App: setting timeStartedStored (Stopwatch property) to nil every time the app is relaunched
+ - Target - EggOnTime: added Privacy - User Notifications Usage Description - Stay updated on your egg's progress with instant reminders
  
  TODO: -
  - If notification permission denied, tell the user about it and maybe he'd like to give permission
@@ -21,6 +22,8 @@
  - Running progress in BG notification
  - Vibration
  - What about the images. Why there're so many option for their sizes?
+ - !!! Slow down the timer in a final export
+ - Make notifications able to run in BG like in the timer examples it was previously
  */
 
 import SwiftUI
@@ -55,7 +58,7 @@ struct MainView: View {
                 .foregroundColor(MyColor.four.opacity(0.5))
                 .padding()
                 */
-                Spacer()
+                
                 Group {
                     // MARK: - Preview
                     GeometryReader { geometry in
@@ -89,17 +92,15 @@ struct MainView: View {
                         }
                         .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                     }
-                    .padding(.vertical, 35)
+                    .padding(.top, 35)
                 }
-                .padding(.horizontal, 35)
-                // If there is no top buttons, should be padding 20 from top
-//                .padding(.top, 20)
             }
-
+            .padding(.horizontal, 35)
+            .padding(.vertical, 20)
         }
         .fullScreenCover(isPresented: $isCookingViewPresented) {
             CookingView(isCookingViewPresented: $isCookingViewPresented)
-                .environmentObject(Stopwatch(timeTimer: model.timeCooking.all))
+                .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: model.timeAlert))
         }
         
         // var body
@@ -109,6 +110,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(CookingViewModel())
+            .environmentObject(Stopwatch(timeAlert: 20))
     }
 }

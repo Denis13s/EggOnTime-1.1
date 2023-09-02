@@ -90,6 +90,6 @@ struct EggCookingView_Previews: PreviewProvider {
     static var previews: some View {
         EggCookingView()
             .environmentObject(CookingViewModel())
-            .environmentObject(Stopwatch())
+            .environmentObject(Stopwatch(timeAlert: 20))
     }
 }

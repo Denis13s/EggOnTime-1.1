@@ -11,7 +11,8 @@
 		046CE0CC2AA204C700F8ED87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0CB2AA204C700F8ED87 /* MainView.swift */; };
 		046CE0CE2AA204C900F8ED87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0CD2AA204C900F8ED87 /* Assets.xcassets */; };
 		046CE0D12AA204C900F8ED87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */; };
-		046CE0DD2AA2069800F8ED87 /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */; };
+		046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */; };
+		04AA05E92AA3B3D9000295ED /* NotificationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */; };
 		04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */; };
 		04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93E2AA23C340054AA57 /* EggParameters.swift */; };
 		04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9402AA240D60054AA57 /* CookingView.swift */; };
@@ -30,7 +31,9 @@
 		046CE0CB2AA204C700F8ED87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		046CE0CD2AA204C900F8ED87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
+		046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypes.swift; sourceTree = "<group>"; };
+		04AA05EA2AA3C66F000295ED /* EggOnTime-1-1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "EggOnTime-1-1-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewModel.swift; sourceTree = "<group>"; };
 		04F5F93E2AA23C340054AA57 /* EggParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggParameters.swift; sourceTree = "<group>"; };
 		04F5F9402AA240D60054AA57 /* CookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingView.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		046CE0C82AA204C700F8ED87 /* EggOnTime-1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				04AA05EA2AA3C66F000295ED /* EggOnTime-1-1-Info.plist */,
 				046CE0CD2AA204C900F8ED87 /* Assets.xcassets */,
 				046CE0CF2AA204C900F8ED87 /* Preview Content */,
 				046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */,
@@ -106,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */,
-				046CE0DC2AA2069800F8ED87 /* StopwatchViewModel.swift */,
+				046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				04F5F93E2AA23C340054AA57 /* EggParameters.swift */,
+				04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,11 +228,12 @@
 				04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */,
 				046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */,
 				04F5F94C2AA24E460054AA57 /* DividerView.swift in Sources */,
-				046CE0DD2AA2069800F8ED87 /* StopwatchViewModel.swift in Sources */,
+				046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */,
 				04F5F9442AA246D40054AA57 /* Constants.swift in Sources */,
 				04F5F9502AA24F290054AA57 /* CircleBGView.swift in Sources */,
 				04F5F94E2AA24EF30054AA57 /* CircleButtonView.swift in Sources */,
 				04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */,
+				04AA05E92AA3B3D9000295ED /* NotificationTypes.swift in Sources */,
 				04F5F9522AA24FCE0054AA57 /* EggCookingView.swift in Sources */,
 				04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */,
 				04F5F9482AA248E10054AA57 /* EggMainView.swift in Sources */,
@@ -362,6 +368,7 @@
 				DEVELOPMENT_TEAM = VDM65QNNS4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EggOnTime-1-1-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -391,6 +398,7 @@
 				DEVELOPMENT_TEAM = VDM65QNNS4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EggOnTime-1-1-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

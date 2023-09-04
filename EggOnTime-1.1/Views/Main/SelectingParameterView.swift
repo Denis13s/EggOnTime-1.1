@@ -13,11 +13,11 @@ struct SelectingParameterView: View {
     
     @State var title: String
     @State var parameter: Any
-    @State var barHeight: CGFloat
+    let barHeight: CGFloat
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: barHeight / 8) {
             Text("\(title):")
                 .font(.subheadline)
                 .fontWeight(.bold)
@@ -29,7 +29,7 @@ struct SelectingParameterView: View {
                     HStack {
                         ForEach(EggSize.allCases, id: \.self) { parameter in
                             ZStack {
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: barHeight / 2)
                                     .foregroundColor(model.eggSize == parameter ?  MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(parameter.rawValue)
@@ -53,7 +53,7 @@ struct SelectingParameterView: View {
                     HStack {
                         ForEach(EggTemp.allCases, id: \.self) { parameter in
                             ZStack {
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: barHeight / 2)
                                     .foregroundColor(model.eggTemp == parameter ?  MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(parameter.rawValue)
@@ -77,7 +77,7 @@ struct SelectingParameterView: View {
                     HStack {
                         ForEach(EggCondition.allCases, id: \.self) { parameter in
                             ZStack {
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: barHeight / 2)
                                     .foregroundColor(model.eggCondition == parameter ?  MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(parameter.rawValue)
@@ -96,7 +96,7 @@ struct SelectingParameterView: View {
                 .frame(height: barHeight)
             }
         }
-        
+       
         // var body
     }
 }

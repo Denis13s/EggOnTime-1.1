@@ -12,6 +12,7 @@ struct CookingView: View {
     
     @EnvironmentObject var model: CookingViewModel
     @EnvironmentObject var stopwatch: Stopwatch
+    @EnvironmentObject var screen: Screen
     
     @Binding var isCookingViewPresented: Bool
     
@@ -22,13 +23,10 @@ struct CookingView: View {
     
     var body: some View {
         
-        // MARK: - Vibration module
-//        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        
         ZStack {
             // MARK: - BG
             Rectangle()
-                .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: 600))
+                .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
                 .ignoresSafeArea()
             
             // MARK: - UI
@@ -51,36 +49,38 @@ struct CookingView: View {
                                 Image(systemName: "x.circle")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(height: 30)
+                                    .frame(height: screen.paddingVBig)
                             }
                         }
                         .foregroundColor(MyColor.four.opacity(0.5))
-                        .padding([.vertical, .horizontal], 20)
+                        .padding(.horizontal, screen.paddingHSmall)
+                        .padding(.vertical, screen.paddingVSmall)
                         
                         // MARK: - Egg Condition
                         VStack(spacing: 0) {
                             ZStack {
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: screen.paddingVSmall)
                                     .foregroundColor(MyColor.four)
-                                    .frame(width: 120, height: 40)
+                                    .frame(width: screen.width * 0.3, height: screen.paddingVSmall * 2)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(currentEggCondition)
                                     .font(.callout)
                                     .foregroundColor(MyColor.three)
                                     .fontWeight(.light)
                             }
-                            .padding(.bottom, 10)
+                            .padding(.bottom, screen.paddingVSmall / 2)
                             
                             Text("Current Condition")
                                 .font(.caption)
                                 .fontWeight(.light)
                                 .foregroundColor(MyColor.four)
                         }
-                        .padding(.horizontal, 35)
+                        .padding(.horizontal, screen.paddingHBig)
                         
                         EggCookingView()
                             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
-                            .padding([.vertical, .horizontal], 35)
+                            .padding(.horizontal, screen.paddingHBig)
+                            .padding(.vertical, screen.paddingVBig)
                     }
                 }
                 
@@ -88,38 +88,31 @@ struct CookingView: View {
                     // MARK: - Time left
                     VStack(spacing: 0) {
                         Text(stopwatch.timeLeftFormatted.min + ":" + stopwatch.timeLeftFormatted.sec)
-                            .font(.system(size: 86))
+                            .font(.system(size: screen.height * 0.1))
                             .fontWeight(.bold)
                         
                         Text("Time Remaining")
                             .fontWeight(.light)
                     }
                     .foregroundColor(MyColor.four)
-                    .padding(.top, 20)
+                    .padding(.top, screen.paddingVSmall)
                     
                     // MARK: - Divider
                     DividerView()
-                        .padding(.top, 35)
+                        .padding(.top, screen.paddingVBig)
                     
                     // MARK: - Timer buttons
-                    HStack(spacing: 70) {
+                    HStack(spacing: screen.paddingHBig * 2) {
                         
                         if !stopwatch.isFinished {
                             Group {
-                                Button {
-                                    stopwatch.reset()
-                                } label: {
+                                Button { stopwatch.reset() } label: {
                                     CircleButtonView(color: MyColor.two, imageColor: MyColor.four, image: "arrow.counterclockwise")
-                                    
                                 }
                                 
                                 Button {
-                                    if stopwatch.isRunning {
-                                        stopwatch.pause()
-                                    }
-                                    else {
-                                        stopwatch.start()
-                                    }
+                                    if stopwatch.isRunning { stopwatch.pause() }
+                                    else { stopwatch.start() }
                                 } label: {
                                     if stopwatch.isRunning {
                                         CircleButtonView(
@@ -139,9 +132,7 @@ struct CookingView: View {
                         }
                         else {
                             Group {
-                                Button {
-                                    stopwatch.reset()
-                                } label: {
+                                Button { stopwatch.reset() } label: {
                                     CircleButtonView(color: MyColor.two, imageColor: MyColor.four, image: "arrow.counterclockwise")
                                 }
                                 
@@ -155,16 +146,12 @@ struct CookingView: View {
                             .opacity(opacityButton2)
                         }
                         
-                        
-                        
-                        
-                        
                     }
-                    .padding(.top, 35)
+                    .padding(.top, screen.paddingVBig)
                 }
-                .padding(.horizontal, 35)
+                .padding(.horizontal, screen.paddingHBig)
             }
-            .padding(.bottom, 20)
+            .padding(.bottom, screen.paddingVSmall)
         }
         // Start timer and schedule notification once the View appeared
         .onAppear {
@@ -173,11 +160,13 @@ struct CookingView: View {
         }
         .onChange(of: stopwatch.shouldAlert) { newValue in
             if newValue {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) /// Vibration
                 AudioServicesPlaySystemSound(1060)
             }
         }
         .onChange(of: stopwatch.isFinished) { newValue in
             if newValue {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) /// Vibration
                 AudioServicesPlaySystemSound(1026)
                 
                 // Animation for the buttons fading
@@ -210,8 +199,13 @@ struct CookingView: View {
 
 struct CookingView_Previews: PreviewProvider {
     static var previews: some View {
-        CookingView(isCookingViewPresented: Binding.constant(true))
-            .environmentObject(CookingViewModel())
-            .environmentObject(Stopwatch(timeAlert: 20))
+        let screen = Screen()
+        screen.updateSizes(width: 430, height: 839)
+        
+        return CookingView(isCookingViewPresented: Binding.constant(true))
+                    .environmentObject(CookingViewModel())
+                    .environmentObject(Stopwatch(timeAlert: 20))
+                    .environmentObject(screen)
     }
 }
+

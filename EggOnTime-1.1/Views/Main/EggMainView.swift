@@ -10,17 +10,19 @@ import SwiftUI
 struct EggMainView: View {
     
     @EnvironmentObject var model: CookingViewModel
+    @EnvironmentObject var screen: Screen
     
-    @State var height: CGFloat
     @State var image = "egg-medium"
-    @State private var imagePadding: CGFloat = 20.0
+    @State private var imagePadding: CGFloat = 0.0
+    
+    let height: CGFloat
+    
     
     var body: some View {
         
         ZStack(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: (height * 2 / 3) / 10 )
                 .frame(height: height * 2 / 3)
-                .cornerRadius(20)
                 .foregroundColor(MyColor.four)
                 .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
             
@@ -46,17 +48,17 @@ struct EggMainView: View {
                             ZStack {
                                 Circle()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 40, height: 40)
+                                    .frame(width: screen.paddingVSmall * 2, height:  screen.paddingVSmall * 2)
                                     .foregroundColor(model.eggTemp == .refrigerated ? MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 
                                 Image(systemName: model.eggTemp == .refrigerated ? "snowflake" : "sun.max")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(height: 15)
+                                    .frame(height: screen.paddingVSmall)
                                     .foregroundColor(model.eggTemp == .refrigerated ? MyColor.three : MyColor.four)
                             }
-                            .padding(35)
+                            .padding(screen.paddingVBig)
                             Spacer()
                         }
                     }
@@ -64,7 +66,7 @@ struct EggMainView: View {
                 
                 VStack(spacing: 0) {
                     Text(model.timeFormatted.min + ":" + model.timeFormatted.sec)
-                        .font(.largeTitle)
+                        .font(.system(size: screen.height * 0.05))
                         .fontWeight(.bold)
                     
                     Text("Estimated Time")
@@ -72,8 +74,11 @@ struct EggMainView: View {
                         .fontWeight(.light)
                 }
                 .foregroundColor(MyColor.three)
-                .padding(.bottom, 20)
+                .padding(.bottom, screen.paddingVSmall)
             }
+        }
+        .onAppear {
+            imagePadding = screen.paddingVSmall * 2 /// default size for the medium size
         }
         .onChange(of: model.eggCondition) { newValue in
             withAnimation {
@@ -87,9 +92,9 @@ struct EggMainView: View {
         .onChange(of: model.eggSize) { newValue in
             withAnimation {
                 switch newValue {
-                case .s: imagePadding = 45.0
-                case .m: imagePadding = 30.0
-                case .l: imagePadding = 15.0
+                case .s: imagePadding = screen.paddingVSmall * 3
+                case .m: imagePadding = screen.paddingVSmall * 2
+                case .l: imagePadding = screen.paddingVSmall
                 case .xl: imagePadding = 0.0
                 }
             }
@@ -108,6 +113,7 @@ struct EggMainView_Previews: PreviewProvider {
             
             EggMainView(height: 759)
                 .environmentObject(CookingViewModel())
+                .environmentObject(Screen())
         }
     }
 }

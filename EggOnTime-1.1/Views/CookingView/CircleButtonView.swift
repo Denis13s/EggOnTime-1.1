@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CircleButtonView: View {
     
+    @EnvironmentObject var screen: Screen
+    
     @State var color: Color
     @State var imageColor: Color
     @State var image: String
@@ -17,12 +19,12 @@ struct CircleButtonView: View {
         
         ZStack {
             Circle()
-                .frame(height: 60)
+                .frame(height: screen.paddingVBig * 1.7)
                 .foregroundColor(color)
             Image(systemName: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: 30)
+                .frame(height: screen.paddingVBig)
                 .foregroundColor(imageColor)
         }
         .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
@@ -33,5 +35,6 @@ struct CircleButtonView: View {
 struct CircleButtonView_Previews: PreviewProvider {
     static var previews: some View {
         CircleButtonView(color: MyColor.two, imageColor: MyColor.four, image: "arrow.counterclockwise")
+            .environmentObject(Screen())
     }
 }

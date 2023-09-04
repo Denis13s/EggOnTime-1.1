@@ -19,6 +19,7 @@ struct EggOnTime_1_1App: App {
         WindowGroup {
             MainView()
                 .environmentObject(CookingViewModel())
+                .environmentObject(Screen())
         }
     }
 }

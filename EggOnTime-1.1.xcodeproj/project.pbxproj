@@ -13,6 +13,7 @@
 		046CE0D12AA204C900F8ED87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */; };
 		046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */; };
 		04AA05E92AA3B3D9000295ED /* NotificationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */; };
+		04DF57ED2AA60EF600414DA8 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF57EC2AA60EF600414DA8 /* Screen.swift */; };
 		04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */; };
 		04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93E2AA23C340054AA57 /* EggParameters.swift */; };
 		04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F9402AA240D60054AA57 /* CookingView.swift */; };
@@ -34,6 +35,7 @@
 		046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypes.swift; sourceTree = "<group>"; };
 		04AA05EA2AA3C66F000295ED /* EggOnTime-1-1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "EggOnTime-1-1-Info.plist"; sourceTree = SOURCE_ROOT; };
+		04DF57EC2AA60EF600414DA8 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewModel.swift; sourceTree = "<group>"; };
 		04F5F93E2AA23C340054AA57 /* EggParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggParameters.swift; sourceTree = "<group>"; };
 		04F5F9402AA240D60054AA57 /* CookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				04F5F93E2AA23C340054AA57 /* EggParameters.swift */,
 				04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */,
+				04DF57EC2AA60EF600414DA8 /* Screen.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */,
 				046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */,
 				04F5F94C2AA24E460054AA57 /* DividerView.swift in Sources */,
+				04DF57ED2AA60EF600414DA8 /* Screen.swift in Sources */,
 				046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */,
 				04F5F9442AA246D40054AA57 /* Constants.swift in Sources */,
 				04F5F9502AA24F290054AA57 /* CircleBGView.swift in Sources */,

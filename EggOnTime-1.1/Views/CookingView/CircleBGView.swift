@@ -11,10 +11,11 @@ import Foundation
 struct CircleBGView: View {
     
     @EnvironmentObject var stopwatch: Stopwatch
+    @EnvironmentObject var screen: Screen
     
-    @State var width: CGFloat
-    @State var height: CGFloat
-    @State var offset: Double
+    let width: CGFloat
+    let height: CGFloat
+    let offset: Double
     
     @State private var opacityCircle = 0.0
     /// trimValue to 1.0 means that the progress of bar is zero. Progress increates when value goes down
@@ -26,13 +27,13 @@ struct CircleBGView: View {
         GeometryReader { geometry in
             ZStack {
                 Circle()
-                    .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: 600))
+                    .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
                     .aspectRatio(contentMode: .fill)
                     .frame(height: width * 2)
                     .position(
                         x: geometry.frame(in: .global).midX,
                         y: geometry.frame(in: .global).midY + (geometry.frame(in: .global).maxY - width * 2) / 2 - 20
-                        )
+                    )
                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                 
                 // MARK: - Flashing circle
@@ -44,7 +45,7 @@ struct CircleBGView: View {
                     .position(
                         x: geometry.frame(in: .global).midX,
                         y: geometry.frame(in: .global).midY + (geometry.frame(in: .global).maxY - width * 2) / 2 - 20
-                        )
+                    )
                     .onChange(of: stopwatch.shouldAlert) { newValue in
                         if newValue { withAnimation(.easeOut(duration: 1).repeatForever()) { opacityCircle = 0.5 } }
                         else { withAnimation { opacityCircle = 0.0 } }
@@ -60,7 +61,7 @@ struct CircleBGView: View {
                     .position(
                         x: geometry.frame(in: .global).midX,
                         y: geometry.frame(in: .global).midY + (geometry.frame(in: .global).maxY - width * 2) / 2
-                        )
+                    )
                     .foregroundColor(MyColor.three)
                 
                 // Actual progress for bar
@@ -74,7 +75,7 @@ struct CircleBGView: View {
                     .position(
                         x: geometry.frame(in: .global).midX,
                         y: geometry.frame(in: .global).midY + (geometry.frame(in: .global).maxY - width * 2) / 2
-                        )
+                    )
             }
             .onAppear {
                 angle = Double((360 * asin(geometry.size.width / (width * 2)) / CGFloat.pi / offset))
@@ -93,13 +94,12 @@ struct CircleBGView: View {
 
 struct CircleBGView_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Rectangle()
-                .ignoresSafeArea()
-                .foregroundColor(.gray)
-            
-            CircleBGView(width: 393, height: 759, offset: 1.1)
-                .environmentObject(Stopwatch(timeTimer: 100, timeAlert: 20))
-        }
+        let screen = Screen()
+        screen.updateSizes(width: 430, height: 839)
+        
+        return CircleBGView(width: 430, height: 839, offset: 1.1)
+            .environmentObject(Stopwatch(timeTimer: 100, timeAlert: 20))
+            .environmentObject(screen)
+        
     }
 }

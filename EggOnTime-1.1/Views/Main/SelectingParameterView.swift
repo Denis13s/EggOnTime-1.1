@@ -27,7 +27,7 @@ struct SelectingParameterView: View {
             // MARK: - EggSize
             if parameter is EggSize {
                 VStack(alignment: .leading) {
-                    HStack {
+                    HStack(spacing: screen.paddingHSmall / 4) {
                         ForEach(EggSize.allCases, id: \.self) { parameter in
                             ZStack {
                                 RoundedRectangle(cornerRadius: barHeight / 2)
@@ -51,7 +51,7 @@ struct SelectingParameterView: View {
             // MARK: - EggTemp
             else if parameter is EggTemp {
                 VStack(alignment: .leading) {
-                    HStack {
+                    HStack(spacing: screen.paddingHSmall / 4) {
                         ForEach(EggTemp.allCases, id: \.self) { parameter in
                             ZStack {
                                 RoundedRectangle(cornerRadius: barHeight / 2)
@@ -75,7 +75,7 @@ struct SelectingParameterView: View {
             // MARK: - EggCondition
             else if parameter is EggCondition {
                 VStack(alignment: .leading) {
-                    HStack {
+                    HStack(spacing: screen.paddingHSmall / 4) {
                         ForEach(EggCondition.allCases, id: \.self) { parameter in
                             ZStack {
                                 RoundedRectangle(cornerRadius: barHeight / 2)

@@ -66,11 +66,11 @@ struct EggMainView: View {
                 
                 VStack(spacing: 0) {
                     Text(model.timeFormatted.min + ":" + model.timeFormatted.sec)
-                        .font(.system(size: screen.height * 0.05))
+                        .font(.system(size: screen.fontLarge))
                         .fontWeight(.bold)
                     
                     Text("Estimated Time")
-                        .font(.caption)
+                        .font(.system(size: screen.fontCaption))
                         .fontWeight(.light)
                 }
                 .foregroundColor(MyColor.three)

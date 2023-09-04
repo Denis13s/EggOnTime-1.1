@@ -64,14 +64,14 @@ struct CookingView: View {
                                     .frame(width: screen.width * 0.3, height: screen.paddingVSmall * 2)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(currentEggCondition)
-                                    .font(.callout)
+                                    .font(.system(size: screen.fontCallout))
                                     .foregroundColor(MyColor.three)
                                     .fontWeight(.light)
                             }
                             .padding(.bottom, screen.paddingVSmall / 2)
                             
                             Text("Current Condition")
-                                .font(.caption)
+                                .font(.system(size: screen.fontCaption))
                                 .fontWeight(.light)
                                 .foregroundColor(MyColor.four)
                         }
@@ -88,10 +88,11 @@ struct CookingView: View {
                     // MARK: - Time left
                     VStack(spacing: 0) {
                         Text(stopwatch.timeLeftFormatted.min + ":" + stopwatch.timeLeftFormatted.sec)
-                            .font(.system(size: screen.height * 0.1))
+                            .font(.system(size: screen.fontXLarge))
                             .fontWeight(.bold)
                         
                         Text("Time Remaining")
+                            .font(.system(size: screen.fontCallout))
                             .fontWeight(.light)
                     }
                     .foregroundColor(MyColor.four)

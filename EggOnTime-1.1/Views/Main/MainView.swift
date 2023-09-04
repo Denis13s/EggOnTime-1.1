@@ -84,7 +84,7 @@ struct MainView: View {
                                 .frame(width: screen.width * 0.3, height: screen.height * 0.08)
                                 .foregroundColor(MyColor.four)
                             Text("Start")
-                                .font(.title3)
+                                .font(.system(size: screen.fontTitle3))
                                 .fontWeight(.medium)
                                 .foregroundColor(MyColor.three)
                         }
@@ -96,12 +96,14 @@ struct MainView: View {
             .padding(.horizontal, screen.paddingHBig)
             .padding(.vertical, screen.paddingVSmall)
             
+            /*
             // MARK: - !!! TEMP
             VStack {
                 Text("\(screen.width) - \(screen.height)")
                 Text("\(screen.paddingHSmall) - \(screen.paddingHBig)")
                 Text("\(screen.paddingVSmall) - \(screen.paddingVBig)")
             }
+            */
         }
         .onAppear {
                 screen.updateSizes(width: geoMain.size.width, height: geoMain.size.height)

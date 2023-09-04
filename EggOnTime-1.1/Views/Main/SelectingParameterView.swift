@@ -10,6 +10,7 @@ import SwiftUI
 struct SelectingParameterView: View {
     
     @EnvironmentObject var model: CookingViewModel
+    @EnvironmentObject var screen: Screen
     
     @State var title: String
     @State var parameter: Any
@@ -19,7 +20,7 @@ struct SelectingParameterView: View {
         
         VStack(alignment: .leading, spacing: barHeight / 8) {
             Text("\(title):")
-                .font(.subheadline)
+                .font(.system(size: screen.fontCallout))
                 .fontWeight(.bold)
                 .foregroundColor(MyColor.four)
             
@@ -33,7 +34,7 @@ struct SelectingParameterView: View {
                                     .foregroundColor(model.eggSize == parameter ?  MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(parameter.rawValue)
-                                    .font(.callout)
+                                    .font(.system(size: screen.fontCallout))
                                     .foregroundColor(model.eggSize == parameter ?  MyColor.three : MyColor.four)
                                     .fontWeight(.light)
                             }
@@ -57,7 +58,7 @@ struct SelectingParameterView: View {
                                     .foregroundColor(model.eggTemp == parameter ?  MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(parameter.rawValue)
-                                    .font(.callout)
+                                    .font(.system(size: screen.fontCallout))
                                     .fontWeight(.light)
                                     .foregroundColor(model.eggTemp == parameter ?  MyColor.three : MyColor.four)
                             }
@@ -81,7 +82,7 @@ struct SelectingParameterView: View {
                                     .foregroundColor(model.eggCondition == parameter ?  MyColor.four : MyColor.two)
                                     .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                                 Text(parameter.rawValue)
-                                    .font(.callout)
+                                    .font(.system(size: screen.fontCallout))
                                     .foregroundColor(model.eggCondition == parameter ?  MyColor.three : MyColor.four)
                                     .fontWeight(.light)
                             }
@@ -108,6 +109,7 @@ struct SelectingParameterView_Previews: PreviewProvider {
                 .foregroundColor(MyColor.one)
             SelectingParameterView(title: "Size", parameter: EggTemp.refrigerated, barHeight: 40)
                 .environmentObject(CookingViewModel())
+                .environmentObject(Screen())
         }
     }
 }

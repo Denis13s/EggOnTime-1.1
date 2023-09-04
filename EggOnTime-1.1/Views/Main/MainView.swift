@@ -9,6 +9,7 @@
  MARK: Features
  - EggOnTime_App: setting timeStartedStored (Stopwatch property) to nil every time the app is relaunched
  - Target - EggOnTime: added Privacy - User Notifications Usage Description - Stay updated on your egg's progress with instant reminders
+ - Target: Only Iphone with portrait orientation
  
  TODO: -
  - If notification permission denied, tell the user about it and maybe he'd like to give permission
@@ -106,6 +107,7 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(CookingViewModel())
             .environmentObject(Stopwatch(timeAlert: 20))
     }
 }

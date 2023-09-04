@@ -14,16 +14,12 @@
  - If notification permission denied, tell the user about it and maybe he'd like to give permission
  - Add settings: Disable sound, disable notifications
  - Add vibrations
- - Maybe worth to put all ui inside scrollview and button start on top in a ZStack, if screen is smaller, this could save preview
- - !Timer stops while screen in blocked. Need rework
- - Slow down the timer in it's model for the final launch
  
  - Adaptable size for every screen (even for gradient size in BG)
  - Running progress in BG notification
- - Vibration
  - What about the images. Why there're so many option for their sizes?
  - !!! Slow down the timer in a final export
- - Make notifications able to run in BG like in the timer examples it was previously
+ - !!! Replace timings in schedule and reschedule notifications
  */
 
 import SwiftUI
@@ -100,7 +96,7 @@ struct MainView: View {
         }
         .fullScreenCover(isPresented: $isCookingViewPresented) {
             CookingView(isCookingViewPresented: $isCookingViewPresented)
-                .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: model.timeAlert))
+                .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: 20))
         }
         
         // var body

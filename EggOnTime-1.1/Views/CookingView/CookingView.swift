@@ -169,20 +169,16 @@ struct CookingView: View {
         // Start timer and schedule notification once the View appeared
         .onAppear {
             stopwatch.start()
-            if !model.notificationPermissionStatus { model.requestNotificationPermission() }
-            model.scheduleNotification(type: .started)
+            if !stopwatch.notificationPermissionStatus { stopwatch.requestNotificationPermission() }
         }
         .onChange(of: stopwatch.shouldAlert) { newValue in
             if newValue {
                 AudioServicesPlaySystemSound(1060)
-//                feedbackGenerator.impactOccurred()
-                model.scheduleNotification(type: .almostReady)
             }
         }
         .onChange(of: stopwatch.isFinished) { newValue in
             if newValue {
                 AudioServicesPlaySystemSound(1026)
-                model.scheduleNotification(type: .ready)
                 
                 // Animation for the buttons fading
                 withAnimation {

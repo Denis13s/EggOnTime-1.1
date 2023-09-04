@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import UserNotifications
 
 final class Stopwatch: ObservableObject {
     @Published private(set) var wasLaunched = false
@@ -21,6 +22,8 @@ final class Stopwatch: ObservableObject {
     @Published private(set) var progress = 0.0
     
     @Published private(set) var shouldAlert = false
+    
+    @Published private(set) var notificationPermissionStatus = false
     
     /// write the initial moment of starting timer if it was started in JSON
     @AppStorage("timeStartedStored") private var timeStartedStored: Data?
@@ -51,19 +54,117 @@ final class Stopwatch: ObservableObject {
     }
 }
 
+// MARK: - Notifications
+extension Stopwatch {
+    func requestNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: .alert) { granted, error in
+            DispatchQueue.main.async {
+                if granted {
+                    self.notificationPermissionStatus = true
+                } else {
+                    self.notificationPermissionStatus = false
+                }
+            }
+        }
+    }
+    
+    func scheduleNotifications() {
+        deinitNotifications()
+        
+        let now = Date()
+        // MARK: - # REPLACE
+        let dateStarted = now + 5
+        let dateReady = now + 10
+        let dateAlmostReady = dateReady - 2
+        /*
+         MARK: - ORIGINAL CODE
+         let dateStarted = now + 5
+         let dateReady = now + timeTimer
+         let dateAlmostReady = dateReady - timeAlert
+        */
+        
+        createNotification(
+            title: "Boiling initiated",
+            body: "Egg ready in \(timeLeftFormatted.min):\(timeLeftFormatted.sec)",
+            date: dateStarted)
+        
+        
+        createNotification(
+            title: "Almost ready",
+            body: "Egg done in \(Int(timeAlert)) seconds",
+            date: dateAlmostReady)
+        
+        
+        createNotification(
+            title: "Done",
+            body: "Egg is ready to eat. Enjoy your meal!",
+            date: dateReady)
+    }
+    
+    func rescheduleNotifications() {
+        deinitNotifications()
+        
+        if let timeStarted {
+            // MARK: - # REPLACE
+            var now = timeStarted
+            now = Date()
+            let dateReady = now + 10
+            let dateAlmostReady = dateReady - 2
+            /*
+             MARK: - ORIGINAL CODE
+             let dateReady = timeStarted + timeTimer + timeIdle
+             let dateAlmostReady = dateReady - timeAlert
+            */
+            
+            createNotification(
+                title: "Almost ready",
+                body: "Egg done in \(Int(timeAlert)) seconds",
+                date: dateAlmostReady)
+            
+            createNotification(
+                title: "Done",
+                body: "Egg is ready to eat. Enjoy your meal!",
+                date: dateReady)
+        }
+    }
+    
+    func createNotification(title: String, body: String, date: Date) {
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.sound = nil
+        content.title = title
+        content.body = body
+        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
+    }
+    
+    func deinitNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        center.removeAllDeliveredNotifications()
+    }
+}
+
 // MARK: - User Communication
 extension Stopwatch {
     func start() {
-        timerDeinit()
+        deinitTimer()
         wasLaunched = true
         isRunning = true
         /// checking if timer was launched, if so, calculates time from that moment, in not, from current
-        if timeStarted == nil { timeStarted = Date() }
+        if timeStarted == nil {
+            timeStarted = Date()
+            scheduleNotifications()
+        }
         /// checking if timer was paused, if so, calculate time interval since the last stop and add to the timeIdle
         if let pause = momentLastTimePaused {
             let now = Date()
             let elapsed = now.timeIntervalSince(pause)
             timeIdle += elapsed
+            rescheduleNotifications()
         }
         /// rund a timer with 0.1 second interval
         timer = Timer
@@ -78,36 +179,38 @@ extension Stopwatch {
                     /// calculate, how much time passes since start was calles subtracting all idle time
                     let elapsed = now.timeIntervalSince(timeStarted) - timeIdle
                     
-                    // MARK: - !!! Temporary timer speeding up. Should be removed
+                    // MARK: - # REPLACE
                     let elapsedSpeededUP = elapsed * 10
                     updateProperties(elapsed: elapsedSpeededUP)
+                    /*
+                    // MARK: Original code
+                    /// every period of time (0.1) updateProperties will be called and update the properties
+                    updateProperties(elapsed: elapsed)
+                    */
                     
-                    /* MARK: Original code
-                     /// every period of time (0.1) updateProperties will be called and update the properties
-                     updateProperties(elapsed: elapsed)
-                     */
                 } else {
                     /// making sure, that is timer is finished, all the values get default values. this prevents from getting negative time
-                    timerDeinit()
+                    deinitTimer()
                     wasLaunched = true
                     isRunning = false
                     isFinished = true
                     timeLeft = 0.0
                     progress = 1.0
                     shouldAlert = false
+                    deinitNotifications()
                 }
             }
         momentLastTimePaused = nil
     }
     
     func pause() {
-        timerDeinit()
+        deinitTimer()
         isRunning = false
         momentLastTimePaused = Date()
     }
     
     func reset() {
-        timerDeinit()
+        deinitTimer()
         wasLaunched = false
         isRunning = false
         isFinished = false
@@ -118,12 +221,13 @@ extension Stopwatch {
         timeStarted = nil
         timeIdle = 0.0
         momentLastTimePaused = nil
+        deinitNotifications()
     }
 }
 
 // MARK: - Private logic
 private extension Stopwatch {
-    func timerDeinit() {
+    func deinitTimer() {
         timer?.cancel()
         timer = nil
     }

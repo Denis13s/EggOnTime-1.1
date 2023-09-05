@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "egg-raw.png",
+      "filename" : "egg-soft.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "egg-soft@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "egg-soft@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

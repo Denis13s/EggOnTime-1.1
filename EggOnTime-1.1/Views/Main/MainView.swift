@@ -12,6 +12,7 @@
  - Target: Only Iphone with portrait orientation
  
  TODO: -
+ - Add vibration for the condition changes
  - If notification permission denied, tell the user about it and maybe he'd like to give permission
  - Add settings: Disable sound, disable notifications
  

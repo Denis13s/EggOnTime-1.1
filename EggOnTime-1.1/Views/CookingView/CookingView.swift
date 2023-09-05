@@ -38,24 +38,6 @@ struct CookingView: View {
                     .ignoresSafeArea()
                     
                     VStack(spacing: 0) {
-                        // MARK: - Top button
-                        HStack {
-                            Spacer()
-                            
-                            Button {
-                                isCookingViewPresented.toggle()
-                                stopwatch.reset()
-                            } label: {
-                                Image(systemName: "x.circle")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: screen.paddingVBig)
-                            }
-                        }
-                        .foregroundColor(MyColor.four.opacity(0.5))
-                        .padding(.horizontal, screen.paddingHSmall)
-                        .padding(.vertical, screen.paddingVSmall)
-                        
                         // MARK: - Egg Condition
                         VStack(spacing: 0) {
                             ZStack {
@@ -76,6 +58,7 @@ struct CookingView: View {
                                 .foregroundColor(MyColor.four)
                         }
                         .padding(.horizontal, screen.paddingHBig)
+                        .padding(.top, screen.paddingVBig)
                         
                         EggCookingView()
                             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
@@ -154,6 +137,27 @@ struct CookingView: View {
                 .padding(.horizontal, screen.paddingHBig)
             }
             .padding(.bottom, screen.paddingVSmall)
+            
+            // MARK: - Top button
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        isCookingViewPresented.toggle()
+                        stopwatch.reset()
+                    } label: {
+                        Image(systemName: "x.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: screen.paddingVBig  * 0.8)
+                    }
+                }
+                .foregroundColor(MyColor.four.opacity(0.5))
+                
+                Spacer()
+            }
+            .padding(.vertical, screen.paddingVSmall)
+            .padding(.horizontal, screen.paddingHSmall)
         }
         .onAppear { /// Start timer and schedule notification once the View appeared
             stopwatch.start()

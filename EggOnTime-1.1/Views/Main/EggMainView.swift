@@ -26,9 +26,9 @@ struct EggMainView: View {
                 .foregroundColor(MyColor.four)
                 .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
             
-            VStack {
+            VStack(spacing: 0) {
                 ZStack {
-                    VStack {
+                    VStack(spacing: 0) {
                         Spacer()
                         ZStack {
                             Image("egg-empty")
@@ -40,6 +40,16 @@ struct EggMainView: View {
                                 .aspectRatio(contentMode: .fit)
                         }
                         .padding(.top, imagePadding)
+                        .onTapGesture {
+                            withAnimation {
+                                switch model.eggSize {
+                                case .s: model.eggSize = .m
+                                case .m: model.eggSize = .l
+                                case .l: model.eggSize = .xl
+                                case .xl: model.eggSize = .s
+                                }
+                            }
+                        }
                     }
                     
                     HStack {
@@ -61,6 +71,11 @@ struct EggMainView: View {
                             .padding(screen.paddingVBig)
                             Spacer()
                         }
+                        .onTapGesture {
+                            withAnimation {
+                                model.eggTemp = (model.eggTemp == .room) ? .refrigerated : .room
+                            }
+                        }
                     }
                 }
                 
@@ -74,7 +89,18 @@ struct EggMainView: View {
                         .fontWeight(.light)
                 }
                 .foregroundColor(MyColor.three)
+                .onTapGesture {
+                    withAnimation {
+                        switch model.eggCondition {
+                        case .soft: model.eggCondition = .medium
+                        case .medium: model.eggCondition = .hard
+                        case .hard: model.eggCondition = .soft
+                        }
+                    }
+                }
+                .padding(.top, screen.paddingVSmall / 2)
                 .padding(.bottom, screen.paddingVSmall)
+                
             }
         }
         .onAppear {

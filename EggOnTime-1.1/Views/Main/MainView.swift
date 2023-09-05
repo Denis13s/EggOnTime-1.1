@@ -11,14 +11,7 @@
  - Target - EggOnTime: added Privacy - User Notifications Usage Description - Stay updated on your egg's progress with instant reminders
  - Target: Only Iphone with portrait orientation
  
- TODO: -
- - Add vibration for the condition changes
- - If notification permission denied, tell the user about it and maybe he'd like to give permission
- - Add settings: Disable sound, disable notifications
- 
- - Refactor CircleBGView
- - Running progress in BG notification
- - What about the images. Why there're so many option for their sizes?
+ TODO: 
  - !!! Slow down the timer in a final export
  - !!! Replace timings in schedule and reschedule notifications
  */
@@ -35,34 +28,17 @@ struct MainView: View {
     var body: some View {
         
         GeometryReader { geoMain in
-        ZStack {
-            Rectangle()
-                .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
-                .ignoresSafeArea()
-            
-            VStack(spacing: 0) {
-                /*
-                 // MARK: - Top buttons
-                 HStack {
-                 Image(systemName: "questionmark.circle")
-                 .resizable()
-                 .aspectRatio(contentMode: .fit)
-                 .frame(height: 30)
-                 Spacer()
-                 Image(systemName: "line.3.horizontal.circle")
-                 .resizable()
-                 .aspectRatio(contentMode: .fit)
-                 .frame(height: 30)
-                 }
-                 .foregroundColor(MyColor.four.opacity(0.5))
-                 .padding()
-                 */
+            ZStack {
+                Rectangle()
+                    .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
+                    .ignoresSafeArea()
                 
-                Group {
+                VStack(spacing: 0) {
                     // MARK: - Preview
                     GeometryReader { geometry in
                         EggMainView(height: geometry.size.height)
                     }
+                    .padding(.top, screen.paddingVBig)
                     
                     // MARK: - Parameters
                     VStack(spacing: screen.paddingVSmall) {
@@ -77,9 +53,7 @@ struct MainView: View {
                         .padding(.top, screen.paddingVBig)
                     
                     // MARK: - Start Button
-                    Button {
-                        isCookingViewPresented.toggle()
-                    } label: {
+                    Button { isCookingViewPresented.toggle() } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: screen.height * 0.04)
                                 .frame(width: screen.width * 0.3, height: screen.height * 0.08)
@@ -93,27 +67,38 @@ struct MainView: View {
                     }
                     .padding(.top, screen.paddingVBig)
                 }
+                .padding(.horizontal, screen.paddingHBig)
+                .padding(.bottom, screen.paddingVSmall)
+                
+                // MARK: - Top buttons
+                VStack {
+                    HStack {
+                        Image(systemName: "questionmark.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: screen.paddingVBig * 0.8)
+                        Spacer()
+                        Image(systemName: "line.3.horizontal.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: screen.paddingVBig  * 0.8)
+                    }
+                    .foregroundColor(MyColor.four.opacity(0.5))
+                    
+                    Spacer()
+                }
+                .padding(.vertical, screen.paddingVSmall)
+                .padding(.horizontal, screen.paddingHSmall)
+                
             }
-            .padding(.horizontal, screen.paddingHBig)
-            .padding(.vertical, screen.paddingVSmall)
-            
-            /*
-            // MARK: - !!! TEMP
-            VStack {
-                Text("\(screen.width) - \(screen.height)")
-                Text("\(screen.paddingHSmall) - \(screen.paddingHBig)")
-                Text("\(screen.paddingVSmall) - \(screen.paddingVBig)")
-            }
-            */
-        }
-        .onAppear {
+            .onAppear {
                 screen.updateSizes(width: geoMain.size.width, height: geoMain.size.height)
             }
-        .fullScreenCover(isPresented: $isCookingViewPresented) {
-            CookingView(isCookingViewPresented: $isCookingViewPresented)
-                .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: 20))
+            .fullScreenCover(isPresented: $isCookingViewPresented) {
+                CookingView(isCookingViewPresented: $isCookingViewPresented)
+                    .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: 20))
+            }
         }
-    }
         
         // var body
     }

@@ -33,7 +33,7 @@ struct CookingView: View {
             VStack(spacing: 0) {
                 ZStack {
                     GeometryReader { geometry in
-                        CircleBGView(width: geometry.size.width, height: geometry.size.height, offset: 1.1)
+                        CircleBGView(height: geometry.size.height)
                     }
                     .ignoresSafeArea()
                     
@@ -80,7 +80,8 @@ struct CookingView: View {
                         EggCookingView()
                             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                             .padding(.horizontal, screen.paddingHBig)
-                            .padding(.vertical, screen.paddingVBig)
+                            .padding(.top, screen.paddingVBig)
+                            .padding(.bottom, screen.paddingVBig + screen.paddingVSmall)
                     }
                 }
                 
@@ -154,8 +155,7 @@ struct CookingView: View {
             }
             .padding(.bottom, screen.paddingVSmall)
         }
-        // Start timer and schedule notification once the View appeared
-        .onAppear {
+        .onAppear { /// Start timer and schedule notification once the View appeared
             stopwatch.start()
             if !stopwatch.notificationPermissionStatus { stopwatch.requestNotificationPermission() }
         }
@@ -204,9 +204,9 @@ struct CookingView_Previews: PreviewProvider {
         screen.updateSizes(width: 430, height: 839)
         
         return CookingView(isCookingViewPresented: Binding.constant(true))
-                    .environmentObject(CookingViewModel())
-                    .environmentObject(Stopwatch(timeAlert: 20))
-                    .environmentObject(screen)
+            .environmentObject(CookingViewModel())
+            .environmentObject(Stopwatch(timeAlert: 20))
+            .environmentObject(screen)
     }
 }
 

@@ -24,6 +24,7 @@ struct MainView: View {
     @EnvironmentObject var screen: Screen
     
     @State var isCookingViewPresented = false
+    @State var isSideMenuViewPresented = false
     
     var body: some View {
         
@@ -73,15 +74,17 @@ struct MainView: View {
                 // MARK: - Top buttons
                 VStack {
                     HStack {
+                        Button { isSideMenuViewPresented.toggle() } label: {
+                            Image(systemName: "line.3.horizontal.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: screen.paddingVBig  * 0.8)
+                        }
+                        Spacer()
                         Image(systemName: "questionmark.circle")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: screen.paddingVBig * 0.8)
-                        Spacer()
-                        Image(systemName: "line.3.horizontal.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: screen.paddingVBig  * 0.8)
                     }
                     .foregroundColor(MyColor.four.opacity(0.5))
                     
@@ -90,6 +93,8 @@ struct MainView: View {
                 .padding(.vertical, screen.paddingVSmall)
                 .padding(.horizontal, screen.paddingHSmall)
                 
+                // MARK: - Side Menu
+                SideMenuView(isSideMenuViewPresented: $isSideMenuViewPresented)
             }
             .onAppear {
                 screen.updateSizes(width: geoMain.size.width, height: geoMain.size.height)

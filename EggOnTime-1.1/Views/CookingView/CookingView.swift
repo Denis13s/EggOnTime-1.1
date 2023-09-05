@@ -15,6 +15,7 @@ struct CookingView: View {
     @EnvironmentObject var screen: Screen
     
     @Binding var isCookingViewPresented: Bool
+    @State var isSideMenuViewPresented = false
     
     @State var currentEggCondition = "Raw"
     
@@ -141,6 +142,12 @@ struct CookingView: View {
             // MARK: - Top button
             VStack {
                 HStack {
+                    Button { isSideMenuViewPresented.toggle() } label: {
+                        Image(systemName: "line.3.horizontal.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: screen.paddingVBig  * 0.8)
+                    }
                     Spacer()
                     Button {
                         isCookingViewPresented.toggle()
@@ -158,6 +165,9 @@ struct CookingView: View {
             }
             .padding(.vertical, screen.paddingVSmall)
             .padding(.horizontal, screen.paddingHSmall)
+            
+            // MARK: - Side Menu
+            SideMenuView(isSideMenuViewPresented: $isSideMenuViewPresented)
         }
         .onAppear { /// Start timer and schedule notification once the View appeared
             stopwatch.start()

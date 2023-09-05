@@ -12,6 +12,7 @@
 		046CE0CE2AA204C900F8ED87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0CD2AA204C900F8ED87 /* Assets.xcassets */; };
 		046CE0D12AA204C900F8ED87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */; };
 		046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */; };
+		0477FA3D2AA7A747001EEF30 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */; };
 		04AA05E92AA3B3D9000295ED /* NotificationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */; };
 		04DF57ED2AA60EF600414DA8 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF57EC2AA60EF600414DA8 /* Screen.swift */; };
 		04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */; };
@@ -33,6 +34,7 @@
 		046CE0CD2AA204C900F8ED87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046CE0D02AA204C900F8ED87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypes.swift; sourceTree = "<group>"; };
 		04AA05EA2AA3C66F000295ED /* EggOnTime-1-1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "EggOnTime-1-1-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04DF57EC2AA60EF600414DA8 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				046CE0CB2AA204C700F8ED87 /* MainView.swift */,
 				04F5F9472AA248E10054AA57 /* EggMainView.swift */,
 				04F5F9452AA2470B0054AA57 /* SelectingParameterView.swift */,
+				0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			files = (
 				046CE0CC2AA204C700F8ED87 /* MainView.swift in Sources */,
 				04F5F9462AA2470B0054AA57 /* SelectingParameterView.swift in Sources */,
+				0477FA3D2AA7A747001EEF30 /* SideMenuView.swift in Sources */,
 				04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */,
 				046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */,
 				04F5F94C2AA24E460054AA57 /* DividerView.swift in Sources */,

@@ -12,8 +12,15 @@ final class CookingViewModel: ObservableObject {
     @Published var eggTemp = EggTemp.refrigerated { didSet { calculateTime() } }
     @Published var eggCondition = EggCondition.medium { didSet { calculateTime() } }
     
-    @Published private(set) var timeCooking: (all: Double, soft: Double, medium: Double, hard: Double) = (390.0, 270.0, 390.0, 630.0) { didSet { updateTimeFormatted() } }
-    @Published private(set) var timeFormatted: (min: String, sec: String) = ("6", "30")
+    // MARK: - # REPLACE
+    @Published private(set) var timeCooking: (all: Double, soft: Double, medium: Double, hard: Double) = (45.0, 35.0, 45.0, 55.0) { didSet { updateTimeFormatted() } }
+    @Published private(set) var timeFormatted: (min: String, sec: String) = ("0", "45")
+    /*
+     MARK: - ORIGINAL CODE
+     @Published private(set) var timeCooking: (all: Double, soft: Double, medium: Double, hard: Double) = (390.0, 270.0, 390.0, 630.0) { didSet { updateTimeFormatted() } }
+     @Published private(set) var timeFormatted: (min: String, sec: String) = ("6", "30")
+     */
+    
 }
 
 // MARK: - Calculating time
@@ -30,16 +37,32 @@ private extension CookingViewModel {
     func calculateTime() {
         let timeBase: (soft: Double, medium: Double, hard: Double)
         switch eggTemp {
-        case .refrigerated: timeBase = (soft: 270.0, medium: 390.0, hard: 630.0)
-        case .room: timeBase = (soft: 210.0, medium: 330.0, hard: 540.0)
+            // MARK: - # REPLACE
+        case .refrigerated: timeBase = (soft: 35.0, medium: 45.0, hard: 55.0)
+        case .room: timeBase = (soft: 30.0, medium: 40.0, hard: 50.0)
+            /*
+             MARK: - ORIGINAL CODE
+             case .refrigerated: timeBase = (soft: 270.0, medium: 390.0, hard: 630.0)
+             case .room: timeBase = (soft: 210.0, medium: 330.0, hard: 540.0)
+             */
+            
         }
         
         let sizeAdjustment: Double
         switch eggSize {
-        case .s: sizeAdjustment = -60.0
+            // MARK: - # REPLACE
+        case .s: sizeAdjustment = -5.0
         case .m: sizeAdjustment = 0.0
-        case .l: sizeAdjustment = 60.0
-        case .xl: sizeAdjustment = 120.0
+        case .l: sizeAdjustment = 5.0
+        case .xl: sizeAdjustment = 10.0
+            /*
+             MARK: - ORIGINAL CODE
+             case .s: sizeAdjustment = -60.0
+             case .m: sizeAdjustment = 0.0
+             case .l: sizeAdjustment = 60.0
+             case .xl: sizeAdjustment = 120.0
+             */
+            
         }
         
         let selectedTime: Double

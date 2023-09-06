@@ -26,6 +26,7 @@ struct SideMenuView: View {
                     .onTapGesture { isSideMenuViewPresented.toggle() }
                 
                 HStack {
+                    Spacer()
                     ZStack{
                         Rectangle()
                             .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
@@ -80,10 +81,8 @@ struct SideMenuView: View {
                         .padding(.horizontal, screen.paddingHSmall)
                         .frame(width: width)
                     }
-                    Spacer()
-                    
                 }
-                .transition(.move(edge: .leading))
+                .transition(.move(edge: .trailing))
             }
         }
         .animation(.easeInOut, value: isSideMenuViewPresented)

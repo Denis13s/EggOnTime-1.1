@@ -54,7 +54,7 @@ struct CircleBGView: View {
                     .foregroundColor(MyColor.three)
                 
                 Circle() /// Progress bar
-                    .trim(from: 1.0 - (trimValue / 360.0), to: 1)
+                    .trim(from: trimValue, to: 1)
                     .stroke(style: StrokeStyle(lineWidth: screen.paddingVSmall / 4, lineCap: .round, lineJoin: .round))
                     .fill(LinearGradient(colors: [MyColor.two, MyColor.four], startPoint: .center, endPoint: .top))
                     .rotationEffect(Angle(degrees: 90.0 + angle / 2))
@@ -63,8 +63,6 @@ struct CircleBGView: View {
                         x: geometry.frame(in: .global).midX,
                         y: geometry.frame(in: .global).minY
                     )
-                
-                
             }
             .onAppear {
                 angle = Double((360 * asin(screen.width / (diameter + screen.height * 0.2)) / CGFloat.pi))

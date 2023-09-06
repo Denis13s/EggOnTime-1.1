@@ -11,9 +11,8 @@
  - Target - EggOnTime: added Privacy - User Notifications Usage Description - Stay updated on your egg's progress with instant reminders
  - Target: Only Iphone with portrait orientation
  
- TODO: 
- - !!! Slow down the timer in a final export
- - !!! Replace timings in schedule and reschedule notifications
+ TODO:
+ - !!! Replace original timing in CookingViewModel
  */
 
 import SwiftUI
@@ -22,6 +21,7 @@ struct MainView: View {
     
     @EnvironmentObject var model: CookingViewModel
     @EnvironmentObject var screen: Screen
+    @EnvironmentObject var settings: Settings
     
     @State var isCookingViewPresented = false
     @State var isSideMenuViewPresented = false
@@ -74,17 +74,18 @@ struct MainView: View {
                 // MARK: - Top buttons
                 VStack {
                     HStack {
+                        Image(systemName: "questionmark.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: screen.paddingVBig * 0.8)
+                        Spacer()
+                        
                         Button { isSideMenuViewPresented.toggle() } label: {
                             Image(systemName: "line.3.horizontal.circle")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: screen.paddingVBig  * 0.8)
                         }
-                        Spacer()
-                        Image(systemName: "questionmark.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: screen.paddingVBig * 0.8)
                     }
                     .foregroundColor(MyColor.four.opacity(0.5))
                     
@@ -104,6 +105,7 @@ struct MainView: View {
                     .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: 20))
             }
         }
+        .environment(\.colorScheme, settings.colorScheme) /// DarkMode enabling
         
         // var body
     }

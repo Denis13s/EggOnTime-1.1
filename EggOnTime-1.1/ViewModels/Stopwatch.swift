@@ -73,16 +73,15 @@ extension Stopwatch {
         deinitNotifications()
         
         let now = Date()
-        // MARK: - # REPLACE
+        /*
+         MARK: - # Test code
         let dateStarted = now + 5
         let dateReady = now + 10
         let dateAlmostReady = dateReady - 2
-        /*
-         MARK: - ORIGINAL CODE
+        */
          let dateStarted = now + 5
          let dateReady = now + timeTimer
          let dateAlmostReady = dateReady - timeAlert
-        */
         
         createNotification(
             title: "Boiling initiated",
@@ -106,16 +105,16 @@ extension Stopwatch {
         deinitNotifications()
         
         if let timeStarted {
-            // MARK: - # REPLACE
+            /*
+             MARK: - # Test code
             var now = timeStarted
             now = Date()
             let dateReady = now + 10
             let dateAlmostReady = dateReady - 2
-            /*
-             MARK: - ORIGINAL CODE
+            */
+            
              let dateReady = timeStarted + timeTimer + timeIdle
              let dateAlmostReady = dateReady - timeAlert
-            */
             
             createNotification(
                 title: "Almost ready",
@@ -178,14 +177,14 @@ extension Stopwatch {
                     /// calculate, how much time passes since start was calles subtracting all idle time
                     let elapsed = now.timeIntervalSince(timeStarted) - timeIdle
                     
-                    // MARK: - # REPLACE
+                    /*
+                     MARK: - # Test code
                     let elapsedSpeededUP = elapsed * 10
                     updateProperties(elapsed: elapsedSpeededUP)
-                    /*
-                    // MARK: Original code
+                    */
+                    
                     /// every period of time (0.1) updateProperties will be called and update the properties
                     updateProperties(elapsed: elapsed)
-                    */
                     
                 } else {
                     /// making sure, that is timer is finished, all the values get default values. this prevents from getting negative time

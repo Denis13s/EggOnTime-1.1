@@ -62,6 +62,7 @@ struct SideMenuView: View {
                                 .padding(.top, screen.paddingVBig)
                             Spacer()
                             
+                            /*
                             // MARK: - Button
                             Button {  } label: {
                                 ZStack {
@@ -76,6 +77,7 @@ struct SideMenuView: View {
                                 .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                             }
                             .padding(.top, screen.paddingVBig)
+                             */
                         }
                         .padding(.vertical, screen.paddingVBig)
                         .padding(.horizontal, screen.paddingHSmall)

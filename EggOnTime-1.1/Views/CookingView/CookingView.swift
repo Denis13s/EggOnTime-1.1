@@ -13,6 +13,7 @@ struct CookingView: View {
     @EnvironmentObject var model: CookingViewModel
     @EnvironmentObject var stopwatch: Stopwatch
     @EnvironmentObject var screen: Screen
+    @EnvironmentObject var settings: Settings
     
     @Binding var isCookingViewPresented: Bool
     @State var isSideMenuViewPresented = false
@@ -172,17 +173,18 @@ struct CookingView: View {
         .onAppear { /// Start timer and schedule notification once the View appeared
             stopwatch.start()
             if !stopwatch.notificationPermissionStatus { stopwatch.requestNotificationPermission() }
+            if settings.isNotificationEnabled { stopwatch.scheduleNotifications() }
         }
         .onChange(of: stopwatch.shouldAlert) { newValue in
             if newValue {
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) /// Vibration
-                AudioServicesPlaySystemSound(1060)
+                if settings.isVibrationEnabled { AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) } /// Vibration
+                if settings.isSoundEnabled { AudioServicesPlaySystemSound(1060) }
             }
         }
         .onChange(of: stopwatch.isFinished) { newValue in
             if newValue {
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) /// Vibration
-                AudioServicesPlaySystemSound(1026)
+                if settings.isVibrationEnabled { AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) } /// Vibration
+                if settings.isSoundEnabled { AudioServicesPlaySystemSound(1026) }
                 
                 // Animation for the buttons fading
                 withAnimation {
@@ -207,6 +209,10 @@ struct CookingView: View {
                 }
             }
         }
+        .onChange(of: settings.isNotificationEnabled) { newValue in /// delete all notifications, if settings were changed in moment
+            if newValue { stopwatch.rescheduleNotifications() }
+            else { stopwatch.deinitNotifications() }
+        }
         
         // var body
     }
@@ -221,6 +227,7 @@ struct CookingView_Previews: PreviewProvider {
             .environmentObject(CookingViewModel())
             .environmentObject(Stopwatch(timeAlert: 20))
             .environmentObject(screen)
+            .environmentObject(Settings())
     }
 }
 

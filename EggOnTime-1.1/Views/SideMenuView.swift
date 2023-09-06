@@ -10,14 +10,11 @@ import SwiftUI
 struct SideMenuView: View {
     
     @EnvironmentObject var screen: Screen
+    @EnvironmentObject var settings: Settings
     
     @Binding var isSideMenuViewPresented: Bool
     
-    @State private var isNotificationEnabled = false
-    @State private var isSoundEnabled = false
-    @State private var isVibrationEnabled = false
-    @State private var isDarkModeEnabled = false
-    
+    private var width: CGFloat { screen.width * 2 / 3 }
     
     var body: some View {
         
@@ -32,10 +29,11 @@ struct SideMenuView: View {
                     ZStack{
                         Rectangle()
                             .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
-                            .frame(width: screen.width * 2 / 3)
+                            .frame(width: width)
                             .ignoresSafeArea()
                         
                         VStack(alignment: .leading, spacing: screen.paddingVSmall) {
+                            // MARK: - Logo
                             HStack(spacing: screen.paddingVSmall / 2) {
                                 Image(systemName: "timer")
                                     .resizable()
@@ -50,42 +48,20 @@ struct SideMenuView: View {
                             }
                             .padding(.bottom, screen.paddingVBig)
                             
-                            Toggle(isOn: $isNotificationEnabled) {
-                                Text("Notifications")
-                                    .font(.system(size: screen.fontCallout))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(MyColor.four)
-                            }
-                            .toggleStyle(SwitchToggleStyle(tint: MyColor.three))
-                                
-                            Toggle(isOn: $isSoundEnabled) {
-                                Text("Sound")
-                                    .font(.system(size: screen.fontCallout))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(MyColor.four)
-                            }
-                            .toggleStyle(SwitchToggleStyle(tint: MyColor.three))
+                            // MARK: - Toggles
+                            ToggleView(isEnabled: $settings.isNotificationEnabled, title: "Notifications", textColor: MyColor.four, toggleColor: MyColor.three)
                             
-                            Toggle(isOn: $isVibrationEnabled) {
-                                Text("Vibration")
-                                    .font(.system(size: screen.fontCallout))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(MyColor.four)
-                            }
-                            .toggleStyle(SwitchToggleStyle(tint: MyColor.three))
+                            ToggleView(isEnabled: $settings.isSoundEnabled, title: "Sound", textColor: MyColor.four, toggleColor: MyColor.three)
                             
-                            Toggle(isOn: $isDarkModeEnabled) {
-                                Text("Dark Mode")
-                                    .font(.system(size: screen.fontCallout))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(MyColor.four)
-                            }
-                            .toggleStyle(SwitchToggleStyle(tint: MyColor.three))
+                            ToggleView(isEnabled: $settings.isVibrationEnabled, title: "Vibration", textColor: MyColor.four, toggleColor: MyColor.three)
+                            
+                            ToggleView(isEnabled: $settings.isDarkModeEnabled, title: "Dark Mode", textColor: MyColor.four, toggleColor: MyColor.three)
                             
                             DividerView()
                                 .padding(.top, screen.paddingVBig)
                             Spacer()
                             
+                            // MARK: - Button
                             Button {  } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: screen.height * 0.04)
@@ -102,14 +78,12 @@ struct SideMenuView: View {
                         }
                         .padding(.vertical, screen.paddingVBig)
                         .padding(.horizontal, screen.paddingHSmall)
-                        .frame(width: screen.width * 2 / 3)
+                        .frame(width: width)
                     }
                     Spacer()
                     
                 }
-                .background(.clear)
                 .transition(.move(edge: .leading))
-                .background( Color.clear )
             }
         }
         .animation(.easeInOut, value: isSideMenuViewPresented)
@@ -125,5 +99,6 @@ struct SideMenuView_Previews: PreviewProvider {
         
         return SideMenuView(isSideMenuViewPresented: Binding.constant(true))
             .environmentObject(screen)
+            .environmentObject(Settings())
     }
 }

@@ -14,6 +14,8 @@
 		046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0DC2AA2069800F8ED87 /* Stopwatch.swift */; };
 		0477FA3D2AA7A747001EEF30 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */; };
 		04AA05E92AA3B3D9000295ED /* NotificationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */; };
+		04AD35952AA8706700D28AB1 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD35942AA8706700D28AB1 /* ToggleView.swift */; };
+		04AD35972AA877C500D28AB1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD35962AA877C500D28AB1 /* Settings.swift */; };
 		04DF57ED2AA60EF600414DA8 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF57EC2AA60EF600414DA8 /* Screen.swift */; };
 		04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */; };
 		04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5F93E2AA23C340054AA57 /* EggParameters.swift */; };
@@ -37,6 +39,8 @@
 		0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypes.swift; sourceTree = "<group>"; };
 		04AA05EA2AA3C66F000295ED /* EggOnTime-1-1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "EggOnTime-1-1-Info.plist"; sourceTree = SOURCE_ROOT; };
+		04AD35942AA8706700D28AB1 /* ToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
+		04AD35962AA877C500D28AB1 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		04DF57EC2AA60EF600414DA8 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		04F5F93C2AA23B890054AA57 /* CookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingViewModel.swift; sourceTree = "<group>"; };
 		04F5F93E2AA23C340054AA57 /* EggParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggParameters.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				046CE0DA2AA2057300F8ED87 /* Main */,
 				046CE0DB2AA2057B00F8ED87 /* CookingView */,
 				04F5F94B2AA24E460054AA57 /* DividerView.swift */,
+				0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */,
+				04AD35942AA8706700D28AB1 /* ToggleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 				04F5F93E2AA23C340054AA57 /* EggParameters.swift */,
 				04AA05E82AA3B3D9000295ED /* NotificationTypes.swift */,
 				04DF57EC2AA60EF600414DA8 /* Screen.swift */,
+				04AD35962AA877C500D28AB1 /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,7 +142,6 @@
 				046CE0CB2AA204C700F8ED87 /* MainView.swift */,
 				04F5F9472AA248E10054AA57 /* EggMainView.swift */,
 				04F5F9452AA2470B0054AA57 /* SelectingParameterView.swift */,
-				0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -234,6 +240,8 @@
 				0477FA3D2AA7A747001EEF30 /* SideMenuView.swift in Sources */,
 				04F5F9412AA240D60054AA57 /* CookingView.swift in Sources */,
 				046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */,
+				04AD35952AA8706700D28AB1 /* ToggleView.swift in Sources */,
+				04AD35972AA877C500D28AB1 /* Settings.swift in Sources */,
 				04F5F94C2AA24E460054AA57 /* DividerView.swift in Sources */,
 				04DF57ED2AA60EF600414DA8 /* Screen.swift in Sources */,
 				046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */,

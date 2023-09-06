@@ -115,5 +115,6 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(CookingViewModel())
             .environmentObject(Stopwatch(timeAlert: 20))
             .environmentObject(Screen())
+            .environmentObject(Settings())
     }
 }

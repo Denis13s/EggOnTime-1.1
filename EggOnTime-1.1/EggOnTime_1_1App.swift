@@ -20,6 +20,7 @@ struct EggOnTime_1_1App: App {
             MainView()
                 .environmentObject(CookingViewModel())
                 .environmentObject(Screen())
+                .environmentObject(Settings())
         }
     }
 }

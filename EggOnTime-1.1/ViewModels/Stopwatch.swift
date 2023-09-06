@@ -157,7 +157,6 @@ extension Stopwatch {
         /// checking if timer was launched, if so, calculates time from that moment, in not, from current
         if timeStarted == nil {
             timeStarted = Date()
-            scheduleNotifications()
         }
         /// checking if timer was paused, if so, calculate time interval since the last stop and add to the timeIdle
         if let pause = momentLastTimePaused {

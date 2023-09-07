@@ -24,6 +24,7 @@ struct MainView: View {
     @EnvironmentObject var settings: Settings
     
     @State var isCookingViewPresented = false
+    @State var isOnboardingViewPresented = false
     @State var isSideMenuViewPresented = false
     
     var body: some View {
@@ -74,10 +75,12 @@ struct MainView: View {
                 // MARK: - Top buttons
                 VStack {
                     HStack {
-                        Image(systemName: "questionmark.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: screen.paddingVBig * 0.8)
+                        Button { isOnboardingViewPresented.toggle() } label: {
+                            Image(systemName: "questionmark.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: screen.paddingVBig * 0.8)
+                        }
                         Spacer()
                         
                         Button { isSideMenuViewPresented.toggle() } label: {
@@ -103,6 +106,9 @@ struct MainView: View {
             .fullScreenCover(isPresented: $isCookingViewPresented) {
                 CookingView(isCookingViewPresented: $isCookingViewPresented)
                     .environmentObject(Stopwatch(timeTimer: model.timeCooking.all, timeAlert: 20))
+            }
+            .fullScreenCover(isPresented: $isOnboardingViewPresented) {
+                OnboardingView(isOnboardingViewPresented: $isOnboardingViewPresented)
             }
         }
         .environment(\.colorScheme, settings.colorScheme) /// DarkMode enabling

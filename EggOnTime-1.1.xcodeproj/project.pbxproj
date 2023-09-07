@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042D50162AAA070400DBCBB9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D50152AAA070400DBCBB9 /* OnboardingView.swift */; };
+		042D50182AAA0E2100DBCBB9 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D50172AAA0E2100DBCBB9 /* OnboardView.swift */; };
 		046CE0CA2AA204C700F8ED87 /* EggOnTime_1_1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */; };
 		046CE0CC2AA204C700F8ED87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE0CB2AA204C700F8ED87 /* MainView.swift */; };
 		046CE0CE2AA204C900F8ED87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046CE0CD2AA204C900F8ED87 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042D50152AAA070400DBCBB9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		042D50172AAA0E2100DBCBB9 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 		046CE0C62AA204C700F8ED87 /* EggOnTime-1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EggOnTime-1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		046CE0C92AA204C700F8ED87 /* EggOnTime_1_1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggOnTime_1_1App.swift; sourceTree = "<group>"; };
 		046CE0CB2AA204C700F8ED87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -65,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042D50142AAA06E400DBCBB9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				042D50152AAA070400DBCBB9 /* OnboardingView.swift */,
+				042D50172AAA0E2100DBCBB9 /* OnboardView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		046CE0BD2AA204C700F8ED87 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +122,7 @@
 			children = (
 				046CE0DA2AA2057300F8ED87 /* Main */,
 				046CE0DB2AA2057B00F8ED87 /* CookingView */,
+				042D50142AAA06E400DBCBB9 /* Onboarding */,
 				04F5F94B2AA24E460054AA57 /* DividerView.swift */,
 				0477FA3C2AA7A747001EEF30 /* SideMenuView.swift */,
 				04AD35942AA8706700D28AB1 /* ToggleView.swift */,
@@ -246,10 +260,12 @@
 				04DF57ED2AA60EF600414DA8 /* Screen.swift in Sources */,
 				046CE0DD2AA2069800F8ED87 /* Stopwatch.swift in Sources */,
 				04F5F9442AA246D40054AA57 /* Constants.swift in Sources */,
+				042D50162AAA070400DBCBB9 /* OnboardingView.swift in Sources */,
 				04F5F9502AA24F290054AA57 /* CircleBGView.swift in Sources */,
 				04F5F94E2AA24EF30054AA57 /* CircleButtonView.swift in Sources */,
 				04F5F93F2AA23C340054AA57 /* EggParameters.swift in Sources */,
 				04AA05E92AA3B3D9000295ED /* NotificationTypes.swift in Sources */,
+				042D50182AAA0E2100DBCBB9 /* OnboardView.swift in Sources */,
 				04F5F9522AA24FCE0054AA57 /* EggCookingView.swift in Sources */,
 				04F5F93D2AA23B890054AA57 /* CookingViewModel.swift in Sources */,
 				04F5F9482AA248E10054AA57 /* EggMainView.swift in Sources */,

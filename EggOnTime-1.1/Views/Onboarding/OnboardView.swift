@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardView: View {
+    @AppStorage("hasShownOnboardingView") var hasShownOnboardingView: Bool = false
     
     @EnvironmentObject var screen: Screen
     
@@ -59,7 +60,10 @@ struct OnboardView: View {
                     
                     Spacer()
                     
-                    Button { isOnboardingViewPresented.toggle() } label: {
+                    Button {
+                        isOnboardingViewPresented.toggle()
+                        hasShownOnboardingView = true
+                    } label: {
                         if tag != (count - 1) {
                             Text("Skip")
                                 .font(.system(size: screen.fontCallout))

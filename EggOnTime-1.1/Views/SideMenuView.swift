@@ -14,6 +14,8 @@ struct SideMenuView: View {
     
     @Binding var isSideMenuViewPresented: Bool
     
+    @State private var dragOffset: CGFloat = 0.0
+    
     private var width: CGFloat { screen.width * 2 / 3 }
     
     var body: some View {
@@ -63,20 +65,20 @@ struct SideMenuView: View {
                             Spacer()
                             
                             /*
-                            // MARK: - Button
-                            Button {  } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: screen.height * 0.04)
-                                        .frame(height: screen.paddingVSmall * 2)
-                                        .foregroundColor(MyColor.two)
-                                    Text("Help & Feedback")
-                                        .font(.system(size: screen.fontCallout))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(MyColor.four)
-                                }
-                                .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
-                            }
-                            .padding(.top, screen.paddingVBig)
+                             // MARK: - Button
+                             Button {  } label: {
+                             ZStack {
+                             RoundedRectangle(cornerRadius: screen.height * 0.04)
+                             .frame(height: screen.paddingVSmall * 2)
+                             .foregroundColor(MyColor.two)
+                             Text("Help & Feedback")
+                             .font(.system(size: screen.fontCallout))
+                             .fontWeight(.medium)
+                             .foregroundColor(MyColor.four)
+                             }
+                             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
+                             }
+                             .padding(.top, screen.paddingVBig)
                              */
                         }
                         .padding(.vertical, screen.paddingVBig)
@@ -85,8 +87,20 @@ struct SideMenuView: View {
                     }
                 }
                 .transition(.move(edge: .trailing))
+                .offset(x: dragOffset) // Apply the drag offset
             }
         }
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    dragOffset = max(value.translation.width, 0) /// Prevent dragging to the left
+                }
+                .onEnded { value in
+                    if value.translation.width > screen.width / 2 { isSideMenuViewPresented.toggle() }
+                    // Reset the offset
+                    dragOffset = 0.0
+                }
+        )
         .animation(.easeInOut, value: isSideMenuViewPresented)
         
         // var body

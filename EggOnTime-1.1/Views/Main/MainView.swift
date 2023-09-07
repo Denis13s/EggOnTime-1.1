@@ -28,6 +28,7 @@ struct MainView: View {
     @State var isSideMenuViewPresented = false
     
     var body: some View {
+        @AppStorage("hasShownOnboardingView") var hasShownOnboardingView: Bool = false
         
         GeometryReader { geoMain in
             ZStack {
@@ -84,7 +85,7 @@ struct MainView: View {
                         Spacer()
                         
                         Button { isSideMenuViewPresented.toggle() } label: {
-                            Image(systemName: "line.3.horizontal.circle")
+                            Image(systemName: "gearshape.circle")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: screen.paddingVBig  * 0.8)
@@ -102,6 +103,7 @@ struct MainView: View {
             }
             .onAppear {
                 screen.updateSizes(width: geoMain.size.width, height: geoMain.size.height)
+                if !hasShownOnboardingView { isOnboardingViewPresented = true }
             }
             .fullScreenCover(isPresented: $isCookingViewPresented) {
                 CookingView(isCookingViewPresented: $isCookingViewPresented)

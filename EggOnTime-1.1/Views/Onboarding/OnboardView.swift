@@ -25,14 +25,16 @@ struct OnboardView: View {
             VStack(spacing: 0) {
                 ZStack {
                     RoundedRectangle(cornerRadius: (screen.height * 2 / 3) / 10 )
-                        .frame(height: screen.height / 1.8)
                         .foregroundColor(MyColor.four)
                         .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15), radius: 5, y: 5)
                     
                     Image("welcome-" + image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .padding(.horizontal, screen.paddingHSmall)
+                        .padding(.vertical, screen.paddingVSmall)
                 }
+                .frame(height: screen.height / 1.8)
                 
                 Text(title)
                     .multilineTextAlignment(.center)

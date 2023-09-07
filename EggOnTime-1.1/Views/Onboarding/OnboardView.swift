@@ -86,7 +86,7 @@ struct OnboardView: View {
                 .padding(.top, screen.paddingVBig)
             }
             .padding(.horizontal, screen.paddingHBig)
-            .padding(.top, screen.paddingVSmall)
+            .padding(.vertical, screen.paddingVSmall)
         
         // var body
     }

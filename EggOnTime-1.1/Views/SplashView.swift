@@ -22,11 +22,7 @@ struct SplashView: View {
         
         GeometryReader { geometry in
             ZStack {
-                Rectangle().opacity(0)
-                    .onAppear {
-                        screen.updateSizes(width: geometry.size.width, height: geometry.size.height)
-                    }
-                    
+                ScreenSizeUpdaterView()
                 
                 if hasShownSplashView {
                     MainView()

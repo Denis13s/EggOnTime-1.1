@@ -8,8 +8,8 @@
 import Foundation
 
 final class Screen: ObservableObject {
-    @Published private(set) var width: CGFloat = 0
-    @Published private(set) var height: CGFloat = 0
+    @Published private(set) var width: CGFloat = 430 /// Default for iPhone 14 Pro Max respecting safe area
+    @Published private(set) var height: CGFloat = 839 /// Default for iPhone 14 Pro Max respecting safe area
     
     @Published private(set) var paddingHSmall: CGFloat = 0
     @Published private(set) var paddingHBig: CGFloat = 0

@@ -34,7 +34,10 @@ struct CircleButtonView: View {
 
 struct CircleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleButtonView(color: MyColor.two, imageColor: MyColor.four, image: "arrow.counterclockwise")
-            .environmentObject(Screen())
+        let screen = Screen()
+        screen.updateSizes(width: 430, height: 839)
+        
+        return CircleButtonView(color: MyColor.two, imageColor: MyColor.four, image: "arrow.counterclockwise")
+            .environmentObject(screen)
     }
 }

@@ -17,7 +17,7 @@ struct EggOnTime_1_1App: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            SplashView()
                 .environmentObject(CookingViewModel())
                 .environmentObject(Screen())
                 .environmentObject(Settings())

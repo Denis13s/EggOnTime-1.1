@@ -96,7 +96,7 @@ struct SideMenuView: View {
                     dragOffset = max(value.translation.width, 0) /// Prevent dragging to the left
                 }
                 .onEnded { value in
-                    if value.translation.width > screen.width / 2 { isSideMenuViewPresented.toggle() }
+                    if value.predictedEndTranslation.width > screen.width / 6 || value.translation.width > screen.width / 6 { isSideMenuViewPresented.toggle() }
                     // Reset the offset
                     dragOffset = 0.0
                 }

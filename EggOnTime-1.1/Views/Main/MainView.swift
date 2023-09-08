@@ -30,7 +30,6 @@ struct MainView: View {
     var body: some View {
         @AppStorage("hasShownOnboardingView") var hasShownOnboardingView: Bool = false
         
-        GeometryReader { geoMain in
             ZStack {
                 Rectangle()
                     .fill(RadialGradient(colors: [MyColor.two, MyColor.one], center: .center, startRadius: 0, endRadius: screen.height * 0.9))
@@ -102,7 +101,6 @@ struct MainView: View {
                 SideMenuView(isSideMenuViewPresented: $isSideMenuViewPresented)
             }
             .onAppear {
-                screen.updateSizes(width: geoMain.size.width, height: geoMain.size.height)
                 if !hasShownOnboardingView { isOnboardingViewPresented = true }
             }
             .fullScreenCover(isPresented: $isCookingViewPresented) {
@@ -112,7 +110,7 @@ struct MainView: View {
             .fullScreenCover(isPresented: $isOnboardingViewPresented) {
                 OnboardingView(isOnboardingViewPresented: $isOnboardingViewPresented)
             }
-        }
+        
         .environment(\.colorScheme, settings.colorScheme) /// DarkMode enabling
         
         // var body
